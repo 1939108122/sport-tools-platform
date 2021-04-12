@@ -1,5 +1,5 @@
 <template>
     <div>
-        Home
+        Shopping
     </div>
 </template>
