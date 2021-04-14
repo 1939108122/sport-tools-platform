@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" name="app">
     <el-container>
         <!-- 顶部导航栏 -->
         <div class="topbar">
@@ -25,6 +25,32 @@
             </div>
             <router-view></router-view>
         </div>
+
+        <!-- 顶栏容器 -->
+      <el-header>
+          <el-menu
+            :default-active="activeIndex"
+            class="el-menu-demo"
+            mode="horizontal"
+            active-text-color="#409eff"
+            router
+          >
+            <div class="logo">
+                <router-link to="/">
+                    <img src="./assets/imgs/logo.png" alt />
+                </router-link>
+            </div>
+            <el-menu-item index="/">首页</el-menu-item>
+            <el-menu-item index="/goods">全部商品</el-menu-item>
+            <el-menu-item index="/about">关于我们</el-menu-item>
+            
+            <div class="so">
+                <el-input placeholder="请输入搜索内容" v-model="search">
+                    <el-button slot="append" icon="el-icon-search" @click="searchClick"></el-button>
+                </el-input>
+            </div>
+        </el-menu>
+      </el-header>
     </el-container>
   </div>
 </template>
@@ -32,13 +58,24 @@
 export default {
     data () {
         return {
-            
+            activeIndex: '', // 头部导航栏选中的标签
+            search: '', // 搜索条件
+            register: false, // 是否显示注册组件
+            visible: false // 是否退出登录
         }
     },
     methods: {
         // 点击登录
         login () {
 
+        },
+        // 点击搜索按钮
+        searchClick() {
+            if (this.search != '') {
+                // 跳转到全部商品页面,并传递搜索条件
+                this.$router.push({ path: "/goods", query: { search: this.search } });
+                this.search = '';
+            }
         }
     } 
 }
@@ -71,6 +108,7 @@ a:hover {
 .topbar {
   height: 40px;
   background-color: #3d3d3d;
+  width: 100%;
   margin-bottom: 20px;
 }
 .topbar .nav {
