@@ -76,7 +76,7 @@
             </div>
           </div>
           <div class="github">
-            <a href="https://github.com/hai-27/vue-store" target="_blank">
+            <a href="https://github.com/1939108122/sport-tools-platform" target="_blank">
               <div class="github-but"></div>
             </a>
           </div>
