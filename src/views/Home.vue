@@ -96,7 +96,17 @@ export default {
         }
     },
     created() {
+        this.$axios({
+            method: 'get',
+            url: 'http://rap2api.taobao.org/app/mock/281912/equipment/getListByCondition',
+            params: {
+                type: ''
+            }
 
+        })
+        .then((res) => {
+            console.log(res);
+        })
     },
     methods: {
         getChildMsg(val) {
