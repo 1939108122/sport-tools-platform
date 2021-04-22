@@ -54,7 +54,7 @@
       <!-- 登录模块 -->
       <MyLogin></MyLogin>
       <!-- 注册模块 -->
-      <MyRegister></MyRegister>
+      <MyRegister :register="register" @fromChild="isRegister"></MyRegister>
 
        <!-- 主要区域容器 -->
       <el-main>
@@ -108,7 +108,28 @@ export default {
     methods: {
         // 点击登录
         login () {
-
+            this.$axios({
+                method: 'GET',
+                url: 'http://127.0.0.1:7001/default/userLogin',
+            }).then((res) => {
+                console.log(res);
+            })
+        },
+        userRegister() {
+            this.$axios({
+                method: 'POST',
+                url: 'http://127.0.0.1:7001/default/userRegister',
+                data: {
+                    userName: 'fox',
+                    password: 3123123
+                }
+            }).then((res) => {
+                console.log(res);
+            })
+        },
+        // 接收子组件传来的数据
+        isRegister(val) {
+            this.register = val;
         },
         // 点击搜索按钮
         searchClick() {
