@@ -86,7 +86,7 @@ export default {
         //如果通过校验开始登录
         if (valid) {
           this.$axios
-            .post("http://127.0.0.1:7001/default/userLogin", {
+            .post("http://127.0.0.1:7001/default/user/login", {
               userName: this.LoginUser.name,
               password: this.LoginUser.pass
             })

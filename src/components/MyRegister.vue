@@ -78,7 +78,7 @@ export default {
                 //判断数据库中是否已经存在该用户名
                 this.$axios({
                     method: 'POST',
-                    url: 'http://127.0.0.1:7001/default/userFind',
+                    url: 'http://127.0.0.1:7001/default/user/find',
                     data: {
                         userName: this.RegisterUser.name
                     } 
@@ -151,7 +151,7 @@ export default {
                 //如果通过校验开始注册
                 if (valid) {
                 this.$axios
-                    .post("http://127.0.0.1:7001/default/userRegister", {
+                    .post("http://127.0.0.1:7001/default/user/register", {
                         userName: this.RegisterUser.name,
                         password: this.RegisterUser.pass,
                         userPhoneNumber: this.RegisterUser.telNumber
