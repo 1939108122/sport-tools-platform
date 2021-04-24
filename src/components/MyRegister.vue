@@ -16,7 +16,7 @@
             clearable
           ></el-input>
         </el-form-item>
-        <el-form-item prop="name">
+        <el-form-item prop="telNumber">
           <el-input
             prefix-icon="el-icon-phone"
             placeholder="请输入电话号码"
@@ -83,12 +83,12 @@ export default {
                         userName: this.RegisterUser.name
                     } 
                 }).then(({data}) => {
-                    if (data.code == 0)
+                    if (data.code == '001')
                     {
                         return callback();
                     }
                     else {
-                        return callback(new Error(data.message));
+                        return callback(new Error(data.msg));
                     }
                 })
             } else {
@@ -147,7 +147,34 @@ export default {
     },
     methods: {
         Register() {
-
+            this.$refs["ruleForm"].validate(valid => {
+                //如果通过校验开始注册
+                if (valid) {
+                this.$axios
+                    .post("http://127.0.0.1:7001/default/userRegister", {
+                        userName: this.RegisterUser.name,
+                        password: this.RegisterUser.pass,
+                        userPhoneNumber: this.RegisterUser.telNumber
+                    })
+                    .then(res => {
+                    // “001”代表注册成功，其他的均为失败
+                    if (res.data.code === "001") {
+                        // 隐藏注册组件
+                        this.isRegister = false;
+                        // 弹出通知框提示注册成功信息
+                        this.notifySucceed(res.data.msg);
+                    } else {
+                        // 弹出通知框提示注册失败信息
+                        this.notifyError(res.data.msg);
+                    }
+                    })
+                    .catch(err => {
+                    return Promise.reject(err);
+                    });
+                } else {
+                return false;
+                }
+            });
         }
     }
 }

@@ -10,6 +10,9 @@ Vue.use(ElementUI);
 import axios from 'axios';
 Vue.prototype.$axios = axios;
 
+// 全局函数及变量
+import Global from './Global';
+Vue.use(Global);
 
 //全局组件
 import MyMenu from './components/MyMenu.vue';

@@ -5,13 +5,21 @@
         <div class="topbar">
             <div class="nav">
                 <ul>
-                    <li v-if="true">
+                    <li v-if="!this.$store.getters.getUser">
                         <el-button type="text" @click="login">登录</el-button>
                         <span class="sep">|</span>
                         <el-button type="text" @click="register = true">注册</el-button>
                     </li>
-                    <li v-if="false">
-                        
+                    <li v-else>
+                    欢迎
+                    <el-popover placement="top" width="180" v-model="visible">
+                        <p>确定退出登录吗？</p>
+                        <div style="text-align: right; margin: 10px 0 0">
+                        <el-button size="mini" type="text" @click="visible = false">取消</el-button>
+                        <el-button type="primary" size="mini" @click="logout">确定</el-button>
+                        </div>
+                        <el-button type="text" slot="reference">{{this.$store.getters.getUser.userName}}</el-button>
+                    </el-popover>
                     </li>
                     <li><router-link to="/order">我的订单</router-link></li>
                     <li><router-link to="/collect">我的收藏</router-link></li>
@@ -39,7 +47,7 @@
                     <img src="./assets/imgs/logo.png" alt />
                 </router-link>
             </div>
-            <el-menu-item index="/">首页</el-menu-item>
+            <el-menu-item index="/home">首页</el-menu-item>
             <el-menu-item index="/goods">全部商品</el-menu-item>
             <el-menu-item index="/about">关于我们</el-menu-item>
             
@@ -96,6 +104,9 @@
   </div>
 </template>
 <script>
+import { mapActions } from "vuex";
+import { mapGetters } from "vuex";
+
 export default {
     data () {
         return {
@@ -105,28 +116,27 @@ export default {
             visible: false // 是否退出登录
         }
     },
+    computed: {
+        ...mapGetters(["getUser", "getNum"])
+    },
+    beforeUpdate() {
+        this.activeIndex = this.$route.path;
+    },
     methods: {
-        // 点击登录
-        login () {
-            this.$axios({
-                method: 'GET',
-                url: 'http://127.0.0.1:7001/default/userLogin',
-            }).then((res) => {
-                console.log(res);
-            })
+        ...mapActions(["setUser", "setShowLogin", "setShoppingCart"]),
+        login() {
+            // 点击登录按钮, 通过更改vuex的showLogin值显示登录组件
+            this.setShowLogin(true);
         },
-        userRegister() {
-            this.$axios({
-                method: 'POST',
-                url: 'http://127.0.0.1:7001/default/userRegister',
-                data: {
-                    userName: 'fox',
-                    password: 3123123
-                }
-            }).then((res) => {
-                console.log(res);
-            })
-        },
+        // 退出登录
+        logout() {
+            this.visible = false;
+            // 清空本地登录信息
+            localStorage.setItem("user", "");
+            // 清空vuex登录信息
+            this.setUser("");
+            this.notifySucceed("成功退出登录");
+            },
         // 接收子组件传来的数据
         isRegister(val) {
             this.register = val;
