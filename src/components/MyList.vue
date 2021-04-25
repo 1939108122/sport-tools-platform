@@ -10,15 +10,15 @@
                 <i class="el-icon-close delete" slot="reference" v-show="isDelete"></i>
                 </el-popover>
                 <router-link :to="{ path: '/goods/details', query: {productID:item.product_id} }">
-                <img :src="'http://106.15.179.105:3000/'+ item.product_picture" alt />
+                <img :src="item.product_picture" alt />
                 <h2>{{item.product_name}}</h2>
                 <h3>{{item.product_title}}</h3>
                 <p>
-                    <span>{{item.product_selling_price}}元</span>
+                    <span>{{item.product_selling_price}}元/月</span>
                     <span
                     v-show="item.product_price != item.product_selling_price"
                     class="del"
-                    >{{item.product_price}}元</span>
+                    >{{item.product_price}}元/月</span>
                 </p>
                 </router-link>
             </li>
@@ -94,7 +94,7 @@ export default {
 .myList ul li {
   z-index: 1;
   float: left;
-  width: 234px;
+  width: 254px;
   height: 280px;
   padding: 10px 0;
   margin: 0 0 14.5px 13.7px;
@@ -112,13 +112,13 @@ export default {
 }
 .myList ul li img {
   display: block;
-  width: 160px;
-  height: 160px;
+  width: 254px;
+  height: 179px;
   background: url(../assets/imgs/placeholder.png) no-repeat 50%;
   margin: 0 auto;
 }
 .myList ul li h2 {
-  margin: 25px 10px 0;
+  margin: 15px 10px 0;
   font-size: 14px;
   font-weight: 400;
   color: #333;

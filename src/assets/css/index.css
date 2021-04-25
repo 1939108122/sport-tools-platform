@@ -1,18 +1,18 @@
 
  .main-box {
   background-color: #f5f5f5;
-  padding-bottom: 20px;
 }
 
 .main {
   margin: 0 auto;
-  max-width: 1225px;
+  max-width: 1350px;
 }
 
 /* 轮播图CSS */
 .block {
   margin: 0 auto;
   max-width: 1225px;
+  padding: 20px 0;
 }
 
 .el-carousel__item:nth-child(2n) {
@@ -27,7 +27,6 @@
 
 .box-hd {
   height: 58px;
-  margin: 20px 0 0 0;
 }
 
 .box-hd .title {
@@ -53,7 +52,7 @@
 }
 
 .box-bd {
-  height: 615px;
+    height: 650px;
 }
 
 .box-bd .promo-list {
@@ -90,6 +89,6 @@
 
 .box-bd .list {
   float: left;
-  height: 615px;
-  width: 1239px;
+  height: 650px;
+  width: 1339px;
 }

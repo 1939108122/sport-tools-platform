@@ -53,46 +53,27 @@
 export default {
     data() {
         return {
-            carousel: [],
-            houseHoldList: [
-                { category_id: 1, product_id: 1, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 1599, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 2, product_id: 2, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 1699, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 3, product_id: 3, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 1799, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 4, product_id: 4, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 1899, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 5, product_id: 5, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 1999, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 6, product_id: 6, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 2099, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 7, product_id: 7, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 2199, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 8, product_id: 8, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 2199, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 9, product_id: 9, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 2199, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                
-            ],
-            aerobicList: [
-                { category_id: 1, product_id: 1, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 1599, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 2, product_id: 2, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 1699, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 3, product_id: 3, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 1799, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 4, product_id: 4, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 1899, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 5, product_id: 5, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 1999, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 6, product_id: 6, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 2099, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 7, product_id: 7, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 2199, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 8, product_id: 8, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 2199, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 9, product_id: 9, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 2199, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-            ],
+            carousel: [], //轮播图
+            houseHoldList: [], //家用设备
+            aerobicList: [], //有氧系列
             powerList: [
-                { category_id: 1, product_id: 1, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 1599, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 2, product_id: 2, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 1699, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 3, product_id: 3, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 1799, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 4, product_id: 4, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 1899, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 5, product_id: 5, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 1999, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 6, product_id: 6, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 2099, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 7, product_id: 7, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 2199, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 8, product_id: 8, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 2199, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
-                { category_id: 9, product_id: 9, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 2199, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
+                { category_id: 1, product_id: 1, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'http://www.star-sports.cn/uploadfile/2020/1216/20201216033138742.jpg',product_price: 2000, product_selling_price: 1599, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
+                { category_id: 2, product_id: 2, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'http://www.star-sports.cn/uploadfile/2020/1216/20201216033138742.jpg',product_price: 2000, product_selling_price: 1699, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
+                { category_id: 3, product_id: 3, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'http://www.star-sports.cn/uploadfile/2020/1216/20201216033138742.jpg',product_price: 2000, product_selling_price: 1799, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
+                { category_id: 4, product_id: 4, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'http://www.star-sports.cn/uploadfile/2020/1216/20201216033138742.jpg',product_price: 2000, product_selling_price: 1899, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
+                { category_id: 5, product_id: 5, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'http://www.star-sports.cn/uploadfile/2020/1216/20201216033138742.jpg',product_price: 2000, product_selling_price: 1999, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
+                { category_id: 6, product_id: 6, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'http://www.star-sports.cn/uploadfile/2020/1216/20201216033138742.jpg',product_price: 2000, product_selling_price: 2099, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
+                { category_id: 7, product_id: 7, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'http://www.star-sports.cn/uploadfile/2020/1216/20201216033138742.jpg',product_price: 2000, product_selling_price: 2199, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
+                { category_id: 8, product_id: 8, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'http://www.star-sports.cn/uploadfile/2020/1216/20201216033138742.jpg',product_price: 2000, product_selling_price: 2199, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
+                { category_id: 9, product_id: 9, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'http://www.star-sports.cn/uploadfile/2020/1216/20201216033138742.jpg',product_price: 2000, product_selling_price: 2199, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' },
             ],
 
         }
     },
     created() {
        this.getCarouselList();
+       this.getProList(1,'houseHoldList');
+       this.getProList(2,'aerobicList');
     },
     methods: {
         // 获取轮播图数据
@@ -101,6 +82,19 @@ export default {
             .get("http://127.0.0.1:7001/default/resource/carousel")
             .then(res => {
                 this.carousel = res.data.carousel;
+            })
+            .catch(err => {
+                return Promise.reject(err);
+            });
+        },
+        // 获取不同类别的商品列表
+        getProList(category_id, list) {
+            this.$axios
+            .get("http://127.0.0.1:7001/default/product/getProByCategory/" + category_id)
+            .then(res => {
+                let arr = JSON.parse(JSON.stringify(res.data));
+                arr.pop();
+                this[list] = arr;
             })
             .catch(err => {
                 return Promise.reject(err);
