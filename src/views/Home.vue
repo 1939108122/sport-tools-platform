@@ -18,7 +18,7 @@
                     </div>
                     <div class="box-bd">
                         <div class="list">
-                            <MyList :list="houseHoldList" :isMore="true"></MyList>
+                            <MyList :list="houseHoldList" :isMore="true" :categoryID="1"></MyList>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                     </div>
                     <div class="box-bd">
                         <div class="list">
-                            <MyList :list="aerobicList" :isMore="true"></MyList>
+                            <MyList :list="aerobicList" :isMore="true" :categoryID="2"></MyList>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="box-bd">
                         <div class="list">
-                        <MyList :list="powerList" :isMore="true"></MyList>
+                        <MyList :list="powerList" :isMore="true" :categoryID="3"></MyList>
                         </div>
                     </div>
                 </div>
@@ -62,13 +62,14 @@ export default {
     },
     created() {
        this.getCarouselList();
-       this.getProList(1,'houseHoldList');
-       this.getProList(2,'aerobicList');
-       this.getProList(3,'powerList');
+       this.getProList('1','houseHoldList');
+       this.getProList('2','aerobicList');
+       this.getProList('3','powerList');
     },
     methods: {
         // 获取轮播图数据
         getCarouselList() {
+            // debugger;
             this.$axios
             .get("http://127.0.0.1:7001/default/resource/carousel")
             .then(res => {
@@ -90,7 +91,7 @@ export default {
                 pageSize
             })
             .then(res => {
-                let arr = JSON.parse(JSON.stringify(res.data));
+                let arr = JSON.parse(JSON.stringify(res.data.list));
                 arr.pop();
                 this[list] = arr;
             })

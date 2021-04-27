@@ -34,7 +34,7 @@
         <div v-else class="none-product">抱歉没有找到相关的商品，请看看其他的商品</div>
       </div>
       <!-- 分页 -->
-      <!-- <div class="pagination">
+      <div class="pagination">
         <el-pagination
           background
           layout="prev, pager, next"
@@ -42,7 +42,7 @@
           :total="total"
           @current-change="currentChange"
         ></el-pagination>
-      </div> -->
+      </div>
       <!-- 分页END -->
     </div>
     <!-- 主要内容区END -->
@@ -58,18 +58,46 @@ export default {
             total: 0, // 商品总量
             pageSize: 15, // 每页显示的商品数量
             currentPage: 1, //当前页码
-            activeName: 0, // 分类列表当前选中的id
+            activeName: '0', // 分类列表当前选中的id
             search: "" // 搜索条件
         }
     },
     created() {
         this.getCategoryList();
-        this.getData(0);
+        // 如果路由传递了search，则为搜索，显示对应的分类商品
+        if (this.$route.query.search != undefined) {
+            this.search = this.$route.query.search;
+        }
     },
     watch: {
-        activeName: function(val) {
-            this.getData(val);
-        }
+        activeName: {
+            handler( newVal, oldVal)
+            {
+                this.$router.push({path: '/goods', query: {categoryID: newVal}});
+                this.getData();
+            },
+            immediate: true
+        },
+        $route: {
+            handler( newVal, oldVal)
+            {
+                if(this.$route.query.categoryID)
+                {
+                    this.activeName = newVal.query.categoryID;
+                }
+                if (newVal.query.search)
+                {
+                    this.search = newVal.query.search;
+                    this.judgeTabName(this.search);
+                }
+            },
+            immediate: true
+        },
+        search: function(val) {
+            if (val != "") {
+                this.getProductBySearch();
+            }
+        },
     },
     methods: {
         // 获取分类列表
@@ -82,18 +110,56 @@ export default {
             })
         },
         // 
-        getData(category_id) {
+        getData() {
             this.$axios({
                 method: 'POST',
                 url: 'http://127.0.0.1:7001/default/product/getProByCategory',
                 data: {
-                    category_id,
+                    category_id: this.activeName,
                     currentPage: this.currentPage,
                     pageSize: this.pageSize
                 }
-            }).then((res) =>{
-                this.product = res.data;
+            }).then(({data}) =>{
+                this.product = data.list;
+                this.total = data.total;
             })
+        },
+        // 当前页面改变时
+        currentChange(val){
+            this.currentPage = val;
+            this.getData();
+        },
+        getProductBySearch() {
+            this.$axios
+            .post("http://127.0.0.1:7001/default/product/getProductBySearch", {
+            search: this.search,
+            currentPage: this.currentPage,
+            pageSize: this.pageSize
+            })
+            .then(res => {
+            this.product = res.data.Product;
+            this.total = res.data.total;
+            })
+            .catch(err => {
+            return Promise.reject(err);
+            });
+        },
+        judgeTabName(name)
+        {
+            switch(name) {
+                case '全部': 
+                    this.activeName = '0';
+                break;
+                case '家用系列': 
+                    this.activeName = '1';
+                break;
+                case '有氧系列': 
+                    this.activeName = '2';
+                break;
+                case '力量系列': 
+                    this.activeName = '3';
+                break;
+            }
         }
     }
 }

@@ -36,27 +36,12 @@ export default {
     name: 'MyList',
     // list为父组件传过来的商品列表
     // isMore为是否显示“浏览更多”
-    props: ["list", "isMore", "isDelete"],
+    props: ["list", "isMore", "isDelete", "categoryID"],
     data () {
         return {
-            
+
         }
     },
-    computed: {
-    // 通过list获取当前显示的商品的分类ID，用于“浏览更多”链接的参数
-    categoryID: function() {
-      let categoryID = [];
-      if (this.list != "") {
-        for (let i = 0; i < this.list.length; i++) {
-          const id = this.list[i].category_id;
-          if (!categoryID.includes(id)) {
-            categoryID.push(id);
-          }
-        }
-      }
-      return categoryID;
-    }
-  },
   methods: {
     deleteCollect(product_id) {
     //   this.$axios
