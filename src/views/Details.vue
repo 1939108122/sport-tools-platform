@@ -96,6 +96,7 @@ export default {
         }
     },
     methods: {
+        ...mapActions(["unshiftShoppingCart", "addShoppingCartNum"]),
         getDetails(val) {
             this.$axios
                 .post("http://127.0.0.1:7001/default/product/getDetails", {
@@ -125,13 +126,66 @@ export default {
         handleClick () {
 
         },
-        // 加入购物车
-        addShoppingCart () {
-
+         // 加入购物车
+        addShoppingCart() {
+        // 判断是否登录,没有登录则显示登录组件
+            if (!this.$store.getters.getUser) {
+                this.$store.dispatch("setShowLogin", true);
+                return;
+            }
+            this.$axios
+                .post("/api/user/shoppingCart/addShoppingCart", {
+                user_id: this.$store.getters.getUser.user_id,
+                product_id: this.productID
+                })
+                .then(res => {
+                switch (res.data.code) {
+                    case "001":
+                    // 新加入购物车成功
+                    this.unshiftShoppingCart(res.data.shoppingCartData[0]);
+                    this.notifySucceed(res.data.msg);
+                    break;
+                    case "002":
+                    // 该商品已经在购物车，数量+1
+                    this.addShoppingCartNum(this.productID);
+                    this.notifySucceed(res.data.msg);
+                    break;
+                    case "003":
+                    // 商品数量达到限购数量
+                    this.dis = true;
+                    this.notifyError(res.data.msg);
+                    break;
+                    default:
+                    this.notifyError(res.data.msg);
+                }
+                })
+                .catch(err => {
+                return Promise.reject(err);
+            });
         },
-        // 添加收藏
-        addCollect () {
-
+        addCollect() {
+        // 判断是否登录,没有登录则显示登录组件
+            if (!this.$store.getters.getUser) {
+                this.$store.dispatch("setShowLogin", true);
+                return;
+            }
+            this.$axios
+                .post("/api/user/collect/addCollect", {
+                user_id: this.$store.getters.getUser.user_id,
+                product_id: this.productID
+                })
+                .then(res => {
+                if (res.data.code == "001") {
+                    // 添加收藏成功
+                    this.notifySucceed(res.data.msg);
+                } else {
+                    // 添加收藏失败
+                    this.notifyError(res.data.msg);
+                }
+                })
+                .catch(err => {
+                    return Promise.reject(err);
+            });
         }
     }
 }

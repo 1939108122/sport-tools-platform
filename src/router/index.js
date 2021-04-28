@@ -61,6 +61,14 @@ const routes = [
       requireAuth: true // 需要验证登录状态
     }
   },
+  {
+    path: '/confirmOrder',
+    name: 'ConfirmOrder',
+    component: () => import('../views/ConfirmOrder.vue'),
+    meta: {
+      requireAuth: true // 需要验证登录状态
+    }
+  }
 ]
 
 const router = new VueRouter({
