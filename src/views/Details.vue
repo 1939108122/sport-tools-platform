@@ -7,13 +7,13 @@
                         <div class="block">
                             <el-carousel height="560px" v-if="productPicture.length>1">
                             <el-carousel-item v-for="item in productPicture" :key="item.id">
-                                <img style="height:560px;" :src="'http://106.15.179.105:3000/' + item.product_picture" :alt="item.intro" />
+                                <img style="height:560px;" :src="item.product_picture" :alt="item.intro" />
                             </el-carousel-item>
                             </el-carousel>
                             <div v-if="productPicture.length==1">
                             <img
-                                style="height:560px;"
-                                :src="'http://106.15.179.105:3000/' + productPicture[0].product_picture"
+                                style="height:560px;width:560px"
+                                :src="productPicture[0].product_picture"
                                 :alt="productPicture[0].intro"
                             />
                             </div>
@@ -22,7 +22,6 @@
                         <div class="content">
                             <h1 class="name">{{productDetails.product_name}}</h1>
                             <p class="intro">{{productDetails.product_intro}}</p>
-                            <p class="store">小米自营</p>
                             <div class="price">
                             <span>{{productDetails.product_selling_price}}元</span>
                             <span
@@ -50,10 +49,10 @@
                             <div class="pro-policy">
                             <ul>
                                 <li>
-                                <i class="el-icon-circle-check"></i> 小米自营
+                                <i class="el-icon-circle-check"></i> 正品保障
                                 </li>
                                 <li>
-                                <i class="el-icon-circle-check"></i> 小米发货
+                                <i class="el-icon-circle-check"></i> 两天内发货
                                 </li>
                                 <li>
                                 <i class="el-icon-circle-check"></i> 7天无理由退货
@@ -72,36 +71,57 @@
     </div>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
     data() {
         return {
             activeName: 'first', //tab选中项
             dis: false, // 控制“加入购物车按钮是否可用”
             productID: "", // 商品id
-            productDetails: { category_id: 1, product_id: 1, product_intro: '120Hz高帧率流速屏/ 索尼6400万前后六摄 / 6.67 小孔径全面屏 / 最高可选8GB+256GB大存储 / 高通骁龙730G处理器 / 3D四曲面玻璃机身 / 4500mAh+27W快充 / 多功能NFC',product_picture: 'public/imgs/phone/Redmi-k30.png',product_price: 2000, product_selling_price: 1599, product_num: 10, product_sales: 0, product_title: '120Hz流速屏，全速热爱' }, // 商品详细信息
-            productPicture: [
-                {
-                    "id":1,
-                    "product_id":1,
-                    "product_picture":"public/imgs/phone/picture/Redmi-k30-1.png",
-                    "intro":null
-                },
-                {
-                    "id":2,
-                    "product_id":1,
-                    "product_picture":"public/imgs/phone/picture/Redmi-k30-2.png",
-                    "intro":null
-                },
-                {
-                    "id":3,
-                    "product_id":1,
-                    "product_picture":"public/imgs/phone/picture/Redmi-k30-3.png",
-                    "intro":null
-                },
-            ] // 商品图片
+            productDetails: {}, // 商品详细信息
+            productPicture: [] // 商品图片
         };
     },
+     // 通过路由获取商品id
+    created() {
+        if (this.$route.query.productID != undefined) {
+            this.productID = this.$route.query.productID;
+        }
+    },
+    watch: {
+        // 监听商品id的变化，请求后端获取商品数据
+        productID: function(val) {
+        this.getDetails(val);
+        this.getDetailsPicture(val);
+        }
+    },
     methods: {
+        getDetails(val) {
+            this.$axios
+                .post("http://127.0.0.1:7001/default/product/getDetails", {
+                productID: val
+                })
+                .then(res => {
+                    // console.log(res);
+                this.productDetails = res.data.list[0];
+                })
+                .catch(err => {
+                return Promise.reject(err);
+            });
+        },
+        // 获取商品图片
+        getDetailsPicture(val) {
+            this.$axios
+                .post("http://127.0.0.1:7001/default/product/getDetailsPicture", {
+                productID: val
+                })
+                .then(res => {
+                this.productPicture = res.data.list;
+                })
+                .catch(err => {
+                return Promise.reject(err);
+            });
+        },
         handleClick () {
 
         },

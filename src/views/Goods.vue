@@ -5,9 +5,9 @@
       <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item to="/">首页</el-breadcrumb-item>
         <el-breadcrumb-item>全部商品</el-breadcrumb-item>
-        <el-breadcrumb-item v-if="search">搜索</el-breadcrumb-item>
-        <el-breadcrumb-item v-else>分类</el-breadcrumb-item>
-        <el-breadcrumb-item v-if="search">{{search}}</el-breadcrumb-item>
+        <!-- <el-breadcrumb-item v-if="search">搜索</el-breadcrumb-item> -->
+        <el-breadcrumb-item>分类</el-breadcrumb-item>
+        <!-- <el-breadcrumb-item v-if="search">{{search}}</el-breadcrumb-item> -->
       </el-breadcrumb>
     </div>
     <!-- 面包屑END -->
@@ -64,31 +64,37 @@ export default {
     },
     created() {
         this.getCategoryList();
-        // 如果路由传递了search，则为搜索，显示对应的分类商品
-        if (this.$route.query.search != undefined) {
-            this.search = this.$route.query.search;
-        }
+           if (this.$route.query.search != undefined) {
+                this.search = this.$route.query.search;
+                this.getProductBySearch();
+            }
+            else {
+                this.$router.push({path: '/goods', query: {categoryID: '0'}});
+                this.getData();
+            }
     },
     watch: {
         activeName: {
             handler( newVal, oldVal)
             {
                 this.$router.push({path: '/goods', query: {categoryID: newVal}});
+                this.currentPage = 1;
                 this.getData();
             },
-            immediate: true
+            immediate: false
         },
         $route: {
             handler( newVal, oldVal)
             {
-                if(this.$route.query.categoryID)
-                {
-                    this.activeName = newVal.query.categoryID;
-                }
+                // if(this.$route.query.categoryID)
+                // {
+                //     this.activeName = newVal.query.categoryID;
+                // }
                 if (newVal.query.search)
                 {
                     this.search = newVal.query.search;
                     this.judgeTabName(this.search);
+
                 }
             },
             immediate: true

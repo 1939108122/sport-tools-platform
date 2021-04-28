@@ -52,7 +52,7 @@
             <el-menu-item index="/about">关于我们</el-menu-item>
             
             <div class="so">
-                <el-input placeholder="请输入搜索内容" v-model="search">
+                <el-input placeholder="请输入搜索内容" v-model="search" clearable>
                     <el-button slot="append" icon="el-icon-search" @click="searchClick"></el-button>
                 </el-input>
             </div>
@@ -66,9 +66,7 @@
 
        <!-- 主要区域容器 -->
       <el-main>
-        <keep-alive>
           <router-view></router-view>
-        </keep-alive>
       </el-main>
 
       <!-- 底栏容器 -->
@@ -78,7 +76,7 @@
             <div class="ng-promise">
               <p class="text">
                 <a class="icon1" href="javascript:;">7天无理由退换货</a>
-                <a class="icon2" href="javascript:;">满99元全场免邮</a>
+                <a class="icon2" href="javascript:;">全国范围配送</a>
                 <a class="icon3" style="margin-right: 0" href="javascript:;">100%品质保证</a>
               </p>
             </div>
@@ -119,6 +117,15 @@ export default {
     computed: {
         ...mapGetters(["getUser", "getNum"])
     },
+    watch: {
+        $route: function (newVal, oldVal) {
+            if (newVal.fullPath.indexOf('/goods') == -1)
+            {
+
+                this.search = '';
+            }
+        }
+    },
     beforeUpdate() {
         this.activeIndex = this.$route.path;
     },
@@ -146,7 +153,9 @@ export default {
             if (this.search != '') {
                 // 跳转到全部商品页面,并传递搜索条件
                 this.$router.push({ path: "/goods", query: { search: this.search } });
-                this.search = '';
+            }
+            else {
+                this.$router.push({ path: "/goods", query: { categoryID: '0' } });
             }
         }
     } 
