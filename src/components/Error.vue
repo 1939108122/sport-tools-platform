@@ -1,9 +1,9 @@
 <template>
   <div class="error">
-    <div class="main">dsa</div>
+    <div class="main"></div>
   </div>
 </template>
-<style lang="less">
+<style>
 .error {
   height: 500px;
   width: 1225px;

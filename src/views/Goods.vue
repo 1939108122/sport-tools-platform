@@ -69,7 +69,7 @@ export default {
                 this.getProductBySearch();
             }
             else {
-                this.$router.push({path: '/goods', query: {categoryID: '0'}});
+                this.$router.push({path: '/goods', query: {categoryID: this.$route.query.categoryID}});
                 this.getData();
             }
     },
@@ -86,10 +86,10 @@ export default {
         $route: {
             handler( newVal, oldVal)
             {
-                // if(this.$route.query.categoryID)
-                // {
-                //     this.activeName = newVal.query.categoryID;
-                // }
+                if(this.$route.query.categoryID)
+                {
+                    this.activeName = newVal.query.categoryID;
+                }
                 if (newVal.query.search)
                 {
                     this.search = newVal.query.search;

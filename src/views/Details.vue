@@ -134,7 +134,7 @@ export default {
                 return;
             }
             this.$axios
-                .post("/api/user/shoppingCart/addShoppingCart", {
+                .post("http://127.0.0.1:7001/default/shopping/addShoppingCart", {
                 user_id: this.$store.getters.getUser.user_id,
                 product_id: this.productID
                 })
@@ -170,7 +170,7 @@ export default {
                 return;
             }
             this.$axios
-                .post("/api/user/collect/addCollect", {
+                .post("http://127.0.0.1:7001/default/collect/addCollect", {
                 user_id: this.$store.getters.getUser.user_id,
                 product_id: this.productID
                 })
