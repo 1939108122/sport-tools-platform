@@ -65,7 +65,7 @@
                         </div>
                     </div>
                 </el-tab-pane>
-                <el-tab-pane label="商品描述" name="second">商品描述</el-tab-pane>
+                <!-- <el-tab-pane label="商品描述" name="second">商品描述</el-tab-pane> -->
                 <el-tab-pane label="用户评论" name="third">用户评论</el-tab-pane>
             </el-tabs>
     </div>

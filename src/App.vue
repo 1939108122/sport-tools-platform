@@ -151,6 +151,13 @@ export default {
         }
         }
     },
+     created() {
+        // 获取浏览器localStorage，判断用户是否已经登录
+        if (localStorage.getItem("user")) {
+        // 如果已经登录，设置vuex登录状态
+        this.setUser(JSON.parse(localStorage.getItem("user")));
+        }
+    },
     beforeUpdate() {
         this.activeIndex = this.$route.path;
     },
