@@ -28,10 +28,10 @@
               <p class="phone">{{item.phone}}</p>
               <p class="address">{{item.address}}</p>
             </li>
-            <li class="add-address">
+            <!-- <li class="add-address">
               <i class="el-icon-circle-plus-outline"></i>
               <p>添加新地址</p>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
@@ -134,12 +134,12 @@ export default {
           phone: "13677904470",
           address: "江西 南昌市 青山湖区 蛟桥镇 东华理工大学"
         },
-        {
-          id: 2,
-          name: "胡女士",
-          phone: "13970881233",
-          address: "江西 南昌市 红谷滩区 万达广场"
-        }
+        // {
+        //   id: 2,
+        //   name: "胡女士",
+        //   phone: "13970881233",
+        //   address: "江西 南昌市 红谷滩区 万达广场"
+        // }
       ]
     };
   },

@@ -23,22 +23,22 @@
                             <h1 class="name">{{productDetails.product_name}}</h1>
                             <p class="intro">{{productDetails.product_intro}}</p>
                             <div class="price">
-                            <span>{{productDetails.product_selling_price}}元</span>
+                            <span>{{productDetails.product_selling_price}}元/月</span>
                             <span
                                 v-show="productDetails.product_price != productDetails.product_selling_price"
                                 class="del"
-                            >{{productDetails.product_price}}元</span>
+                            >{{productDetails.product_price}}元/每月</span>
                             </div>
                             <div class="pro-list">
                             <span class="pro-name">{{productDetails.product_name}}</span>
                             <span class="pro-price">
-                                <span>{{productDetails.product_selling_price}}元</span>
+                                <span>{{productDetails.product_selling_price}}元/每月</span>
                                 <span
                                 v-show="productDetails.product_price != productDetails.product_selling_price"
                                 class="pro-del"
-                                >{{productDetails.product_price}}元</span>
+                                >{{productDetails.product_price}}元/每月</span>
                             </span>
-                            <p class="price-sum">总计 : {{productDetails.product_selling_price}}元</p>
+                            <p class="price-sum">总计 : {{productDetails.product_selling_price}}元/每月</p>
                             </div>
                             <!-- 内容区底部按钮 -->
                             <div class="button">

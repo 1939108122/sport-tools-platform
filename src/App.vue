@@ -44,7 +44,7 @@
           >
             <div class="logo">
                 <router-link to="/">
-                    <img src="./assets/imgs/logo.png" alt />
+                    <img src="./assets/logo4.jpg" alt />
                 </router-link>
             </div>
             <el-menu-item index="/home">首页</el-menu-item>
@@ -281,9 +281,9 @@ a:hover {
   max-width: 1225px;
   margin: 0 auto;
 }
-.el-header .logo {
+.el-header .logo img{
   height: 60px;
-  width: 189px;
+  width: 130px;
   float: left;
   margin-right: 100px;
 }
