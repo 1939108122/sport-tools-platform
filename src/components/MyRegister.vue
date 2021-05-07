@@ -126,6 +126,16 @@ export default {
                 return callback(new Error("两次输入的密码不一致"));
             }
         };
+        // 验证手机号的规则
+        var checkMobile = (rule, value, cb) => {
+            // 验证手机号的正则表达式
+            const regMobile = /^(0|86|17951)?(13[0-9]|15[0123456789]|17[678]|18[0-9]|14[57])[0-9]{8}$/
+            if (regMobile.test(value))
+            {
+                return cb()
+            }
+            cb(new Error('请输入合法的手机号码！'))
+        }
         return {
             isRegister: false, // 控制注册组件是否显示
             RegisterUser: {
@@ -138,7 +148,7 @@ export default {
                 name: [{ validator: validateName, trigger: "blur" }],
                 telNumber: [
                     { required: true, message: '请输入电话号码', trigger: 'blur' },
-                    { min: 11, max: 11, message: '长度为11位', trigger: 'blur' }
+                    { validator: checkMobile, trigger: 'blur'}
                 ],
                 pass: [{ validator: validatePass, trigger: "blur" }],
                 confirmPass: [{ validator: validateConfirmPass, trigger: "blur" }]
