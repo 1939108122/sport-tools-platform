@@ -44,7 +44,7 @@
           >
             <div class="logo">
                 <router-link to="/">
-                    <img src="./assets/logo4.jpg" alt />
+                    <img src="./assets/logo3.jpg" alt />
                 </router-link>
             </div>
             <el-menu-item index="/home">首页</el-menu-item>
