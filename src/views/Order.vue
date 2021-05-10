@@ -48,7 +48,7 @@
                 :to="{ path: '/goods/details', query: {productID:product.product_id} }"
               >{{product.product_name}}</router-link>
             </div>
-            <div class="pro-price">{{product.product_price}}元</div>
+            <div class="pro-price">{{product.product_price}}元/月</div>
             <div class="pro-num">{{product.product_num}}</div>
             <div class="pro-total pro-total-in">{{product.product_price*product.product_num}}元</div>
           </li>
