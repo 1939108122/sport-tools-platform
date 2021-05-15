@@ -24,6 +24,7 @@
           <div class="pro-name">商品名称</div>
           <div class="pro-price">单价</div>
           <div class="pro-num">数量</div>
+          <div class="pro-month">租用时间</div>
           <div class="pro-total">小计</div>
           <div class="pro-action">操作</div>
         </li>
@@ -53,6 +54,15 @@
               :min="1"
               :max="item.maxNum"
             ></el-input-number>
+          </div>
+          <div class="pro-month">
+              <el-input-number
+                size="small"
+                :value="item.rentMonth"
+                @change="handleChangeMonth($event,index,item.productID)"
+                :min="1"
+                :max="4">
+              </el-input-number>
           </div>
           <div class="pro-total pro-total-in">{{item.price*item.num}}元</div>
           <div class="pro-action">
@@ -174,6 +184,9 @@ export default {
                 return Promise.reject(err);
             });
         },
+        handleChangeMonth(currentValue, key, productID) {
+
+        },
         // 向后端发起删除购物车的数据库信息请求
         deleteItem(e, id, productID) {
             this.$axios
@@ -239,7 +252,7 @@ export default {
 
 /* 购物车主要内容区CSS */
 .shoppingCart .content {
-  width: 1225px;
+  width: 1325px;
   margin: 0 auto;
   background-color: #fff;
 }
@@ -280,13 +293,18 @@ export default {
 }
 .shoppingCart .content ul .pro-name {
   float: left;
-  width: 380px;
+  width: 300px;
 }
 .shoppingCart .content ul .pro-name a {
   color: #424242;
 }
 .shoppingCart .content ul .pro-name a:hover {
   color: #ff6700;
+}
+.shoppingCart .content ul .pro-month {
+  float: left;
+  width: 150px;
+  text-align: center;
 }
 .shoppingCart .content ul .pro-price {
   float: left;

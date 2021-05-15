@@ -12,6 +12,7 @@ export default {
         num: "", // 商品数量
         maxNum: "", // 商品限购数量
         check: false // 是否勾选
+        rendMouth: " //租用月份
       } */
     },
     getters: {
