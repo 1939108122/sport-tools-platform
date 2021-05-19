@@ -66,12 +66,15 @@
                     </div>
                 </el-tab-pane>
                 <!-- <el-tab-pane label="商品描述" name="second">商品描述</el-tab-pane> -->
-                <el-tab-pane label="用户评论" name="third">暂无用户评论</el-tab-pane>
+                <el-tab-pane label="用户评论" name="third">
+                    <userComments />
+                </el-tab-pane>
             </el-tabs>
     </div>
 </template>
 <script>
 import { mapActions } from "vuex";
+import userComments from '../components/userComments.vue'
 export default {
     data() {
         return {
@@ -81,6 +84,9 @@ export default {
             productDetails: {}, // 商品详细信息
             productPicture: [] // 商品图片
         };
+    },
+    components: {
+        userComments
     },
      // 通过路由获取商品id
     created() {

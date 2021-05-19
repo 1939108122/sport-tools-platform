@@ -49,7 +49,7 @@
             </div>
             <el-menu-item index="/home">首页</el-menu-item>
             <el-menu-item index="/goods">全部商品</el-menu-item>
-            <el-menu-item index="/about">关于我们</el-menu-item>
+            <el-menu-item index="/userCenter">用户中心</el-menu-item>
             
             <div class="so">
                 <el-input placeholder="请输入搜索内容" v-model="search" clearable>
@@ -91,8 +91,6 @@
               <router-link to="/">首页</router-link>
               <span>|</span>
               <router-link to="/goods">全部商品</router-link>
-              <span>|</span>
-              <router-link to="/about">关于我们</router-link>
             </p>
             <p class="coty">商城版权所有 &copy; 2012-2021</p>
           </div>

@@ -44,33 +44,33 @@ export default {
     },
   methods: {
     deleteCollect(product_id) {
-    //   this.$axios
-    //     .post("/api/user/collect/deleteCollect", {
-    //       user_id: this.$store.getters.getUser.user_id,
-    //       product_id: product_id
-    //     })
-    //     .then(res => {
-    //       switch (res.data.code) {
-    //         case "001":
-    //           // 删除成功
-    //           // 删除删除列表中的该商品信息
-    //           for (let i = 0; i < this.list.length; i++) {
-    //             const temp = this.list[i];
-    //             if (temp.product_id == product_id) {
-    //               this.list.splice(i, 1);
-    //             }
-    //           }
-    //           // 提示删除成功信息
-    //           this.notifySucceed(res.data.msg);
-    //           break;
-    //         default:
-    //           // 提示删除失败信息
-    //           this.notifyError(res.data.msg);
-    //       }
-    //     })
-    //     .catch(err => {
-    //       return Promise.reject(err);
-    //     });
+      this.$axios
+        .post("http://127.0.0.1:7001/default/collect/deleteCollect", {
+          user_id: this.$store.getters.getUser.user_id,
+          product_id: product_id
+        })
+        .then(res => {
+          switch (res.data.code) {
+            case "001":
+              // 删除成功
+              // 删除删除列表中的该商品信息
+              for (let i = 0; i < this.list.length; i++) {
+                const temp = this.list[i];
+                if (temp.product_id == product_id) {
+                  this.list.splice(i, 1);
+                }
+              }
+              // 提示删除成功信息
+              this.notifySucceed(res.data.msg);
+              break;
+            default:
+              // 提示删除失败信息
+              this.notifyError(res.data.msg);
+          }
+        })
+        .catch(err => {
+          return Promise.reject(err);
+        });
     }
   }
 }

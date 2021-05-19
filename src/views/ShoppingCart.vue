@@ -24,7 +24,7 @@
           <div class="pro-name">商品名称</div>
           <div class="pro-price">单价</div>
           <div class="pro-num">数量</div>
-          <div class="pro-month">租用时间</div>
+          <div class="pro-month">租用时间(月)</div>
           <div class="pro-total">小计</div>
           <div class="pro-action">操作</div>
         </li>
@@ -58,13 +58,13 @@
           <div class="pro-month">
               <el-input-number
                 size="small"
-                :value="item.rentMonth"
+                v-model="item.rentMonth"
                 @change="handleChangeMonth($event,index,item.productID)"
                 :min="1"
-                :max="4">
+                :max="24">
               </el-input-number>
           </div>
-          <div class="pro-total pro-total-in">{{item.price*item.num}}元</div>
+          <div class="pro-total pro-total-in">{{item.price*item.num*item.rentMonth}}元</div>
           <div class="pro-action">
             <el-popover placement="right">
               <p>确定删除吗？</p>
@@ -185,7 +185,36 @@ export default {
             });
         },
         handleChangeMonth(currentValue, key, productID) {
-
+            // 当修改数量时，默认勾选
+            this.updateShoppingCart({ key: key, prop: "check", val: true });
+            // 向后端发起更新购物车的数据库信息请求
+            this.$axios
+            .post("http://127.0.0.1:7001/default/shopping/updateShoppingCartRentMonth", {
+            user_id: this.$store.getters.getUser.user_id,
+            product_id: productID,
+            rent_month: currentValue
+            })
+            .then(res => {
+            switch (res.data.code) {
+                case "001":
+                // “001”代表更新成功
+                // 更新vuex状态
+                this.updateShoppingCart({
+                    key: key,
+                    prop: "rent_month",
+                    val: currentValue
+                });
+                // 提示更新成功信息
+                // this.notifySucceed(res.data.msg);
+                break;
+                default:
+                // 提示更新失败信息
+                this.notifyError(res.data.msg);
+            }
+            })
+            .catch(err => {
+                return Promise.reject(err);
+            });
         },
         // 向后端发起删除购物车的数据库信息请求
         deleteItem(e, id, productID) {
@@ -303,7 +332,7 @@ export default {
 }
 .shoppingCart .content ul .pro-month {
   float: left;
-  width: 150px;
+  width: 180px;
   text-align: center;
 }
 .shoppingCart .content ul .pro-price {
@@ -338,7 +367,7 @@ export default {
 
 /* 购物车底部导航条CSS */
 .shoppingCart .cart-bar {
-  width: 1225px;
+  width: 1325px;
   height: 50px;
   line-height: 50px;
   background-color: #fff;

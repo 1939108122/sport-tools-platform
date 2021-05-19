@@ -12,7 +12,7 @@ export default {
         num: "", // 商品数量
         maxNum: "", // 商品限购数量
         check: false // 是否勾选
-        rendMouth: " //租用月份
+        rentMouth: " //租用月份
       } */
     },
     getters: {
@@ -71,7 +71,7 @@ export default {
         for (let i = 0; i < state.shoppingCart.length; i++) {
           const temp = state.shoppingCart[i];
           if (temp.check) {
-            totalPrice += temp.price * temp.num;
+            totalPrice += temp.price * temp.num *temp.rentMonth;
           }
         }
         return totalPrice;

@@ -30,9 +30,12 @@
           <li class="header">
             <div class="pro-img"></div>
             <div class="pro-name">商品名称</div>
+            <div class="pro-status">状态</div>
             <div class="pro-price">单价</div>
             <div class="pro-num">数量</div>
+            <div class="pro-remain-days">剩余天数</div>
             <div class="pro-total">小计</div>
+            <div class="pro-return">操作</div>
           </li>
           <!-- 我的订单表头END -->
 
@@ -48,9 +51,17 @@
                 :to="{ path: '/goods/details', query: {productID:product.product_id} }"
               >{{product.product_name}}</router-link>
             </div>
+            <div class="pro-status">
+                <span v-if ="product.is_return == '0'" style="color:#67C23A">租用中</span>
+                <span v-else style="color:#ff6700">已退还</span>
+            </div>
             <div class="pro-price">{{product.product_price}}元/月</div>
             <div class="pro-num">{{product.product_num}}</div>
-            <div class="pro-total pro-total-in">{{product.product_price*product.product_num}}元</div>
+            <div class="pro-remain-days">{{product.remain_days}}天</div>
+            <div class="pro-total pro-total-in">{{product.product_price*product.product_num*product.rent_month}}元</div>
+            <div class="pro-return">
+                <el-button size="small" type="primary" @click="returnProduct(product.product_id, product.is_return)">退还</el-button>
+            </div>
           </li>
         </ul>
         <div class="order-bar">
@@ -93,18 +104,7 @@ export default {
   },
   created() {
     // 获取订单数据
-    this.$axios
-      .post("http://127.0.0.1:7001/default/order/getOrder", {
-        user_id: this.$store.getters.getUser.user_id
-      })
-      .then(res => {
-        if (res.data.code === "001") {
-          this.orders = res.data.orders;
-        }
-      })
-      .catch(err => {
-        return Promise.reject(err);
-      });
+    this.getOrderList()
   },
   watch: {
     // 通过订单信息，计算出每个订单的商品数量及总价
@@ -118,12 +118,51 @@ export default {
         for (let j = 0; j < element.length; j++) {
           const temp = element[j];
           totalNum += temp.product_num;
-          totalPrice += temp.product_price * temp.product_num;
+          totalPrice += temp.product_price * temp.product_num*temp.rent_month;
         }
         total.push({ totalNum, totalPrice });
       }
       this.total = total;
     }
+  },
+  methods: {
+      //获取订单数据
+      getOrderList(){
+          this.$axios
+            .post("http://127.0.0.1:7001/default/order/getOrder", {
+                user_id: this.$store.getters.getUser.user_id
+            })
+            .then(res => {
+                if (res.data.code === "001") {
+                this.orders = res.data.orders;
+                }
+            })
+            .catch(err => {
+                return Promise.reject(err);
+            });
+      },
+        //   归还商品
+      returnProduct(product_id, is_return) {
+          if (is_return == 1)
+          {
+              this.$notify.error('该商品已退还,请勿重复退还');
+              return;
+          }
+          this.$axios
+            .post("http://127.0.0.1:7001/default/order/returnOrder", {
+                user_id: this.$store.getters.getUser.user_id,
+                product_id
+            })
+            .then(res => {
+                if (res.data.code === "001") {
+                    this.getOrderList();
+                    this.notifySucceed(res.data.msg);
+                }
+            })
+            .catch(err => {
+                return Promise.reject(err);
+            });
+      }
   }
 };
 </script>
@@ -196,7 +235,7 @@ export default {
   float: left;
   height: 85px;
   width: 120px;
-  padding-left: 80px;
+  padding-left: 30px;
 }
 .order .content ul .pro-img img {
   height: 80px;
@@ -204,7 +243,11 @@ export default {
 }
 .order .content ul .pro-name {
   float: left;
-  width: 380px;
+  width: 300px;
+}
+.order .content ul .pro-status {
+  float: left;
+  width: 50px;
 }
 .order .content ul .pro-name a {
   color: #424242;
@@ -215,22 +258,31 @@ export default {
 .order .content ul .pro-price {
   float: left;
   width: 160px;
-  padding-right: 18px;
+  /* padding-right: 18px; */
   text-align: center;
 }
 .order .content ul .pro-num {
   float: left;
-  width: 190px;
+  width: 130px;
+  text-align: center;
+}
+.order .content ul .pro-remain-days {
+  float: left;
+  width: 100px;
   text-align: center;
 }
 .order .content ul .pro-total {
   float: left;
   width: 160px;
-  padding-right: 81px;
-  text-align: right;
+  text-align: center;
 }
 .order .content ul .pro-total-in {
   color: #ff6700;
+}
+.order .content ul .pro-return {
+    float: right;
+    width: 120px;
+    text-align: center;
 }
 
 .order .order-bar {

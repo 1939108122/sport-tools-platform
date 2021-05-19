@@ -33,9 +33,9 @@ const routes = [
     component: () => import('../views/Details.vue')
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue')
+    path: '/userCenter',
+    name: 'userCenter',
+    component: () => import('../views/UserCenter.vue')
   },
   {
     path: '/shoppingCart',

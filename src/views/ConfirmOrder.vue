@@ -46,8 +46,8 @@
               <img :src="item.productImg" />
               <span class="pro-name">{{item.productName}}</span>
               <span class="pro-price">{{item.price}}元 x {{item.num}}</span>
-              <span class="pro-status"></span>
-              <span class="pro-total">{{item.price * item.num}}元</span>
+              <span class="pro-status">{{item.rentMonth}}个月</span>
+              <span class="pro-total">{{item.price * item.num*item.rentMonth}}元</span>
             </li>
           </ul>
         </div>
