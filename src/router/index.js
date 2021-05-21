@@ -35,7 +35,10 @@ const routes = [
   {
     path: '/userCenter',
     name: 'userCenter',
-    component: () => import('../views/UserCenter.vue')
+    component: () => import('../views/UserCenter.vue'),
+    meta: {
+        requireAuth: true // 需要验证登录状态
+    }
   },
   {
     path: '/shoppingCart',
